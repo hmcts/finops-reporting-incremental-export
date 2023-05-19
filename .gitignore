@@ -1,0 +1,5 @@
+.idea
+*.tfstate*
+tfplan
+*.lock.hcl
+.terraform

@@ -1,5 +1,6 @@
 resource "azurerm_logic_app_workflow" "logic_app_workflow" {
-  name                = var.product
+  name                = "${replace(var.product, "-", "")}inc${var.environment}"
+  enabled             = false
   location            = azurerm_resource_group.finops_reporting_rg.location
   resource_group_name = azurerm_resource_group.finops_reporting_rg.name
 

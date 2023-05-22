@@ -22,3 +22,4 @@ variable "product" {}
 
 variable "env" {}
 variable "builtFrom" {}
+variable "expiresAfter" {}

@@ -18,11 +18,9 @@ variable "account_kind" {
   default = "StorageV2"
 }
 
+variable "product" {}
 
-variable "product" {
-  type    = string
-  default = "finops-reporting"
-}
+variable "component" {}
 
 variable "env" {}
 variable "builtFrom" {}

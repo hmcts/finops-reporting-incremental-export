@@ -16,8 +16,8 @@ resource "azurerm_resource_group_template_deployment" "logic_app_deployment" {
   template_content = data.local_file.logic_app.content
 
   parameters_content = jsonencode({
-    "logic_app_name"   = { value = azurerm_logic_app_workflow.logic_app_workflow.name }
-    "location"         = { value = azurerm_resource_group.finops_reporting_rg.location }
+    "logic_app_name" = { value = azurerm_logic_app_workflow.logic_app_workflow.name }
+    "location"       = { value = azurerm_resource_group.finops_reporting_rg.location }
   })
 }
 

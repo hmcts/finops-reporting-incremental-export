@@ -7,7 +7,7 @@ module "finops_reporting_storage_account" {
   account_kind             = var.account_kind
   account_replication_type = var.account_replication_type
 
-  tags = module.tags.common_tags
+  common_tags = module.tags.common_tags
 }
 
 resource "azurerm_storage_table" "finops_reporting_storage_table" {

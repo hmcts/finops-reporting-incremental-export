@@ -1,5 +1,5 @@
 module "finops_reporting_storage_account" {
-  source                   = "git@github.com:hmcts/cnp-module-storage-account.git?ref=master"
+  source                   = "git::https://github.com/hmcts/cnp-module-storage-account.git?ref=master"
   env                      = var.environment
   storage_account_name     = "${var.product}${var.environment}"
   resource_group_name      = azurerm_resource_group.finops_reporting_rg.name

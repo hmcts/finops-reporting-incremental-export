@@ -1,7 +1,7 @@
 module "finops_reporting_storage_account" {
   source                   = "git::https://github.com/hmcts/cnp-module-storage-account.git?ref=master"
   env                      = var.environment
-  storage_account_name     = "${replace(var.product, "-", "")}${var.environment}"
+  storage_account_name     = "${replace(var.product, "-", "")}incremental${var.environment}"
   resource_group_name      = azurerm_resource_group.finops_reporting_rg.name
   location                 = var.location
   account_kind             = var.account_kind
@@ -11,6 +11,6 @@ module "finops_reporting_storage_account" {
 }
 
 resource "azurerm_storage_table" "finops_reporting_storage_table" {
-  name                 = "${replace(var.product, "-", "")}${var.environment}"
+  name                 = "${replace(var.product, "-", "")}incremental${var.environment}"
   storage_account_name = module.finops_reporting_storage_account.storageaccount_name
 }

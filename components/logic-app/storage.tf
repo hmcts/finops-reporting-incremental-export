@@ -12,10 +12,6 @@ module "finops_reporting_storage_account" {
     data.azurerm_subnet.cft-ptlsbox-00.id
   ]
 
-  ip_rules = [
-    "87.115.68.211"
-  ]
-
   common_tags = module.tags.common_tags
 }
 

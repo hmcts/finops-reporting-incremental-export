@@ -54,11 +54,6 @@
                                 "method": "GET",
                                 "uri": ""
                             },
-                            "runAfter": {
-                                    "Get KeyVault Secret": [
-                                        "Succeeded"
-                                    ]
-                            },
                             "type": "Http"
                         }
                     }

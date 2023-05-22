@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "finops_reporting_rg" {
 }
 
 module "tags" {
-  source       = "git::https://github.com/hmcts/terraform-module-common-tags.git?ref=master"
+  source       = "git::https://github.com/hmcts/terraform-module-common-tags.git?ref=DTSPO-13031/finops-reporting"
   environment  = var.env
   product      = var.product
   builtFrom    = var.builtFrom

@@ -20,7 +20,6 @@ resource "azurerm_resource_group_template_deployment" "logic_app_deployment" {
   parameters_content = jsonencode({
     "logic_app_name" = { value = azurerm_logic_app_workflow.logic_app_workflow.name }
     "location"       = { value = azurerm_resource_group.finops_reporting_rg.location }
-    "commonTags"     = { value = base64encode(jsonencode(module.tags.common_tags)) }
   })
 
   tags = module.tags.common_tags

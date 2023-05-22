@@ -7,6 +7,11 @@ module "finops_reporting_storage_account" {
   account_kind             = var.account_kind
   account_replication_type = var.account_replication_type
 
+  sa_subnets = [
+    data.azurerm_subnet.cft-ptl-00.id,
+    data.azurerm_subnet.cft-ptlsbox-00.id
+  ]
+
   common_tags = module.tags.common_tags
 }
 

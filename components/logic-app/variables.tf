@@ -23,3 +23,6 @@ variable "product" {
   type    = string
   default = "finops-reporting"
 }
+
+variable "env" {}
+variable "builtFrom" {}

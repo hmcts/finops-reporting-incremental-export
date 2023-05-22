@@ -9,6 +9,10 @@
         "location": {
             "defaultValue": "",
             "type": "string"
+        },
+        "commonTags": {
+            "defaultValue": "",
+            "type": "string"
         }
     },
     "variables": {},

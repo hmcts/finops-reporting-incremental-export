@@ -6,12 +6,14 @@ data "local_file" "logic_app" {
 }
 
 data "azurerm_subnet" "cft-ptl-00" {
+  provider             = azurerm.cft-ptl
   name                 = "aks-00"
   virtual_network_name = "cft-ptl-vnet"
   resource_group_name  = "cft-ptl-network-rg"
 }
 
 data "azurerm_subnet" "cft-ptlsbox-00" {
+  provider             = azurerm.cft-ptlsbox
   name                 = "aks-00"
   virtual_network_name = "cft-ptlsbox-vnet"
   resource_group_name  = "cft-ptlsbox-network-rg"

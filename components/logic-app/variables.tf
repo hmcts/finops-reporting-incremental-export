@@ -20,7 +20,5 @@ variable "account_kind" {
 
 variable "product" {}
 
-variable "component" {}
-
 variable "env" {}
 variable "builtFrom" {}

@@ -6,9 +6,13 @@ module "finops_reporting_storage_account" {
   location                 = var.location
   account_kind             = var.account_kind
   account_replication_type = var.account_replication_type
+
+  tags = module.tags.common_tags
 }
 
 resource "azurerm_storage_table" "finops_reporting_storage_table" {
   name                 = "${replace(var.product, "-", "")}${var.environment}"
   storage_account_name = module.finops_reporting_storage_account.storageaccount_name
+
+  tags = module.tags.common_tags
 }

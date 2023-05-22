@@ -6,6 +6,8 @@ resource "azurerm_logic_app_workflow" "logic_app_workflow" {
   identity {
     type = "SystemAssigned"
   }
+
+  tags = module.tags.common_tags
 }
 
 resource "azurerm_resource_group_template_deployment" "logic_app_deployment" {
@@ -19,5 +21,7 @@ resource "azurerm_resource_group_template_deployment" "logic_app_deployment" {
     "logic_app_name" = { value = azurerm_logic_app_workflow.logic_app_workflow.name }
     "location"       = { value = azurerm_resource_group.finops_reporting_rg.location }
   })
+
+  tags = module.tags.common_tags
 }
 

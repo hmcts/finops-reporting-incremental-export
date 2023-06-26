@@ -8,7 +8,7 @@ data_source="balanceSummary"
 subscription_name="DTS-SHAREDSERVICES-SBOX"
 subscription_id="a8140a9e-f1b0-481f-a4de-09e2ee23f7ab"  
 service_principal_app_id="c9f9bf69-1285-4857-8979-7f644e922918"
-service_principal_secret="PbP8Q~loVsi3ypSSoPvG3RpHiYxVA2tL4SLSja3A"
+service_principal_secret=""
 tenant_id="531ff96d-0ae9-462a-8d2d-bec7c0b42082"
 resource_group="finops-reporting-sbox-rg"
 storage_account_name="finopsreportingincsbox"
@@ -39,7 +39,7 @@ az config set extension.use_dynamic_install=yes_without_prompt || { echo "ERROR:
 
 # Log on and set subscription to work in 
 echo "INFO: Log in to azure"
-az login --service-principal -u ${service_principal_app_id} -p ${service_principal_secret} --tenant ${tenant_id} || { echo "ERROR: cant log in to az CLI"; exit 1; } 
+# az login --service-principal -u ${service_principal_app_id} -p ${service_principal_secret} --tenant ${tenant_id} || { echo "ERROR: cant log in to az CLI"; exit 1; } 
 
 echo "INFO: Set Azure Subscription to" ${subscription_name}
 az account set --subscription $subscription_name || { echo "cant set subscription"; exit 1; } 

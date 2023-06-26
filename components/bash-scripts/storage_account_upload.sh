@@ -6,7 +6,7 @@ set -e
 # subscription_name="DTS-SHAREDSERVICES-SBOX"
 # subscription_id="a8140a9e-f1b0-481f-a4de-09e2ee23f7ab"  
 # service_principal_app_id="c9f9bf69-1285-4857-8979-7f644e922918"
-# service_principal_secret="PbP8Q~loVsi3ypSSoPvG3RpHiYxVA2tL4SLSja3A"
+# service_principal_secret=""
 # tenant_id="531ff96d-0ae9-462a-8d2d-bec7c0b42082"
 # resource_group="finops-reporting-sbox-rg"
 # storage_account_name="finopsreportingincsbox"

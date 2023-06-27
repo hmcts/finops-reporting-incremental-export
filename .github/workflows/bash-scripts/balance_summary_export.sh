@@ -26,10 +26,6 @@ billing_period=$(date +%Y%m)
 echo "INFO: Setting extentions to install without prompt" # This was required in testing to ensure all needed az commands were installed if this isnt present the script waits for user input
 az config set extension.use_dynamic_install=yes_without_prompt || { echo "ERROR: az config set fail"; exit 1; } 
 
-
-# echo "INFO: Set Azure Subscription to" ${subscription_name}
-# az account set --subscription $subscription_name || { echo "cant set subscription"; exit 1; } 
-
 # Check subscription is the same as expected
 
 if [[ $(az account show --query "[name]" -o tsv) != ${subscription_name} ]]  
@@ -42,8 +38,15 @@ fi
 
 echo "INFO: Interogate API start"
 az rest --method get --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?api-version=2023-03-01'  > ${source_full_path}
-echo "INFO: Exit code is:" $?
-echo "INFO: Interogate API end"
+if [[ $? -ne 0 ]]
+    then
+        echo "ERROR: Fail"
+        echo "INFO: Exit code is:" $?
+        exit 1
+    else 
+        echo "INFO: Interogate API end"
+fi
+
 
 ls ${source_full_path}
 

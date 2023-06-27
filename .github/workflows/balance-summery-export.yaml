@@ -40,6 +40,3 @@ jobs:
 
       - name: Balance Summary Export
         run: .github/workflows/bash-scripts/balance_summary_export.sh
-      
-      - name: Reservation Recomendations
-        run: .github/workflows/bash-scripts/balance_summary_export.sh

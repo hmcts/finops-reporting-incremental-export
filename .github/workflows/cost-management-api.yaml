@@ -18,9 +18,8 @@ jobs:
           echo "current dir:" 
           pwd
           echo "whats in that dir:"
-          ls
-          cd ./.github/workflows/bash-scripts/*
-          ls -lh
+          ls -R
+          
       # - name: 'Az CLI login'
       #   uses: azure/login@v1
       #   with:

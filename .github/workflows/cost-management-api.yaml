@@ -18,7 +18,9 @@ jobs:
           echo "current dir:" 
           pwd
           echo "whats in that dir:"
-          ls -la
+          ls
+          cd ./.github/workflows/bash-scripts/*
+          ls -lh
       # - name: 'Az CLI login'
       #   uses: azure/login@v1
       #   with:
@@ -26,4 +28,4 @@ jobs:
       #     tenant-id: ${{ secrets.AZURE_TENANT_ID }}
       #     subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       # - name: Cost Management API
-      #   run: ./bash-scripts/balance_summary_export.sh
+      #   run: .github/workflows/bash-scripts/balance_summary_export.sh

@@ -38,5 +38,8 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Cost Management AP
+      - name: Balance Summary Export
+        run: .github/workflows/bash-scripts/balance_summary_export.sh
+      
+      - name: Reservation Recomendations
         run: .github/workflows/bash-scripts/balance_summary_export.sh

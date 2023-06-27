@@ -4,16 +4,6 @@ working_dir=$(mktemp -d)
 # IFS="|"
 data_source="balanceSummary"
 
-# Azure specific vars
-subscription_name="${{ secrets }}"
-subscription_id=""  
-service_principal_app_id=""
-service_principal_secret=""
-tenant_id=""
-resource_group=""
-storage_account_name=""
-container_name=""
-
 # source file specific vars
 source_dir="${working_dir}"
 source_file_name="${data_source}-$(date +%y%m%d-%H%M%S).json"
@@ -22,11 +12,11 @@ source_full_path="${source_dir}/${filter}-${source_file_name}"
 # destination speciifc vars
 destination_path="$data_source/$(date +%y/%m/%d)" # This creates a /YY/MM/DD  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
 destination_filename="${source_file_name}"
+
 # destination_full_path="/${destination_path}/${destination_filename}" #in this script this is populated in the while loop 
 
 # API specific vars
 # filter=("Single" "Shared") #array of possible api filters normally shared and single 
-billing_account="59232335"
 billing_period=$(date +%Y%m)
 # start_date="2022-10-01"
 # end_date="2022-10-31"

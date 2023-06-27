@@ -47,7 +47,17 @@ ls ${source_full_path}
 
 # now upload to storage
 destination_full_path="/${destination_path}/${source_file_name}"
-source storage_account_upload.sh
+
+if [[ -f .github/workflows/bash-scripts/storage_account_upload.sh ]]
+    then
+        source .github/workflows/bash-scripts/storage_account_upload.sh
+    else
+        echo "ERROR: cant find .github/workflows/bash-scripts/storage_account_upload.sh current path:"
+        pwd
+        echo "INFO: Tree out put"
+        ls -R
+        exit 1
+    fi
 echo "upload to Storage Account: "${storage_account_name}" container:" ${container_name} " Path:"${destination_full_path}
 Upload_to_storage
 

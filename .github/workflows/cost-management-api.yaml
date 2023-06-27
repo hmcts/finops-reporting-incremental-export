@@ -7,17 +7,24 @@ permissions:
   id-token: write
 # set vars for script here 
 env: 
-  subscription_name: DTS-SHAREDSERVICES-SBOX
+  subscription_name: {{ secrets.SUBSCRIPTION_NAME }}
+  client_id: {{ secrets.AZURE_CLIENT_ID }}
+  subscription_id: {{ secrets.AZURE_SUBSCRIPTION_ID }}
+  tenant_id: {{ secrets.AZURE_TENANT_ID }}
+  container_name: {{ secrets.CONTAINER_NAME }}
+  resource_group: {{ secrets.RESOURCE_GROUP }}
+  service_principal_app_id: {{ secrets.SERVICE_PRINCIPAL_APP_ID }}
+  storage_account_name: {{ secrets.STORAGE_ACCOUNT_NAME }}
+  billing_account: {{ secrets.SUBSCRIPTION_NAME }}
+  # : {{ secrets.SUBSCRIPTION_NAME }}
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        id: Git Checkout
         uses: actions/checkout@v3
 
       - name: Set the value in bash
-        id: step_one
         run: |
           echo "current dir:" 
           pwd
@@ -25,7 +32,6 @@ jobs:
           ls -R
    
       - name: 'Az CLI login'
-        id: Az Cli Login
         uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}

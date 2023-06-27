@@ -40,8 +40,7 @@ echo "INFO: Interogate API start"
 az rest --method get --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?api-version=2023-03-01'  > ${source_full_path}
 if [[ $? -ne 0 ]]
     then
-        echo "ERROR: Fail"
-        echo "INFO: Exit code is:" $?
+        echo "ERROR: FAIL Exit code is:" $?
         exit 1
     else 
         echo "INFO: Interogate API end"

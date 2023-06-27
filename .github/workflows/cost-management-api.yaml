@@ -12,12 +12,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 'show me the dir'
+      - name: Set the value in bash
+        id: step_one
         run: |
-        echo "current dir"
-        pwd
-        echo "whats in that dir"
-        ls -la
+          echo "current dir:" 
+          pwd
+          echo "whats in that dir:"
+          ls -la
       # - name: 'Az CLI login'
       #   uses: azure/login@v1
       #   with:

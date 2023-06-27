@@ -42,7 +42,9 @@ fi
 
 echo "INFO: Interogate API start"
 az rest --method get --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?api-version=2023-03-01'  > ${source_full_path}
+echo "INFO: Exit code is:" $?
 echo "INFO: Interogate API end"
+
 ls ${source_full_path}
 
 # now upload to storage

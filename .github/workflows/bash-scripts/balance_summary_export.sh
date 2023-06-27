@@ -3,17 +3,16 @@
 working_dir=$(mktemp -d)
 # IFS="|"
 data_source="balanceSummary"
-echo "foo"
-exit
+
 # Azure specific vars
-subscription_name="DTS-SHAREDSERVICES-SBOX"
-subscription_id="a8140a9e-f1b0-481f-a4de-09e2ee23f7ab"  
-service_principal_app_id="c9f9bf69-1285-4857-8979-7f644e922918"
+subscription_name="${{ secrets }}"
+subscription_id=""  
+service_principal_app_id=""
 service_principal_secret=""
-tenant_id="531ff96d-0ae9-462a-8d2d-bec7c0b42082"
-resource_group="finops-reporting-sbox-rg"
-storage_account_name="finopsreportingincsbox"
-container_name="test"
+tenant_id=""
+resource_group=""
+storage_account_name=""
+container_name=""
 
 # source file specific vars
 source_dir="${working_dir}"
@@ -38,12 +37,8 @@ echo "INFO: Setting extentions to install without prompt" # This was required in
 az config set extension.use_dynamic_install=yes_without_prompt || { echo "ERROR: az config set fail"; exit 1; } 
 
 
-# Log on and set subscription to work in 
-echo "INFO: Log in to azure"
-# az login --service-principal -u ${service_principal_app_id} -p ${service_principal_secret} --tenant ${tenant_id} || { echo "ERROR: cant log in to az CLI"; exit 1; } 
-
-echo "INFO: Set Azure Subscription to" ${subscription_name}
-az account set --subscription $subscription_name || { echo "cant set subscription"; exit 1; } 
+# echo "INFO: Set Azure Subscription to" ${subscription_name}
+# az account set --subscription $subscription_name || { echo "cant set subscription"; exit 1; } 
 
 # Check subscription is the same as expected
 
@@ -63,7 +58,6 @@ ls ${source_full_path}
 # now upload to storage
 destination_full_path="/${destination_path}/${source_file_name}"
 source storage_account_upload.sh
-
 echo "upload to Storage Account: "${storage_account_name}" container:" ${container_name} " Path:"${destination_full_path}
 Upload_to_storage
 

@@ -3,7 +3,8 @@
 working_dir=$(mktemp -d)
 # IFS="|"
 data_source="balanceSummary"
-
+echo "foo"
+exit
 # Azure specific vars
 subscription_name="DTS-SHAREDSERVICES-SBOX"
 subscription_id="a8140a9e-f1b0-481f-a4de-09e2ee23f7ab"  

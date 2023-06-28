@@ -1,4 +1,4 @@
-name: Cost Management API
+name: Reservation Recommendations API
 on:
   workflow_dispatch:
   schedule:
@@ -40,3 +40,4 @@ jobs:
       
       - name: Reservation Recomendations
         run: .github/workflows/bash-scripts/reservationrecommendations.sh
+              

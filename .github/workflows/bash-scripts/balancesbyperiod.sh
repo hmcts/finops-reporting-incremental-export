@@ -20,12 +20,17 @@ filter=("Single" "Shared") #array of possible api filters normally shared and si
 billing_period=$(date +%Y%m)
 
 
-
+# billing_account=59232335
 for filter in "${filter[@]}"
 do
     export_name="Reservationcharges_${subscription_name}_${filter}_${billing_period}.json"
     base_url="https://management.azure.com/providers/Microsoft.Billing/billingAccounts/${billing_account}/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?&api-version=2023-03-01"
-    az rest --method get --url ${base_url} > ${working_dir}/${export_name}
+    # testing echos
+    echo "---- INFO: The URL being used is:"
+    echo $base_url
+    echo "----"
+    # base_url="https://management.azure.com/providers/Microsoft.Billing/billingAccounts/${billing_account}/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?&api-version=2023-03-01"
+    az rest --method get --url ${base_url} ;exit # > ${working_dir}/${export_name}
     # now upload to storage
 
     if [[ -f .github/workflows/bash-scripts/storage_account_upload.sh ]]

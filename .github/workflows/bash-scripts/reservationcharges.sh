@@ -24,7 +24,7 @@ look_back_period="Last1Days" #time to request data for
 for filter in "${filter[@]}"
 do
     export_name="Reservationrecomendations_${subscription_name}_${filter}_${start_date}-${end_date}.json"
-    base_url="https://management.azure.com/subscriptions/${subscription_id}/providers/Microsoft.Consumption/reservationRecommendations?\$filter=properties/scope eq '${filter}' AND properties/lookBackPeriod eq 'Last7Days'&api-version=2023-03-01"
+    base_url="https://management.azure.com/subscriptions/${subscription_id}/providers/Microsoft.Consumption/${data_source}?\$filter=properties/scope eq '${filter}' AND properties/lookBackPeriod eq 'Last7Days'&api-version=2023-03-01"
     az rest --method get --url ${base_url} > ${working_dir}/${export_name}
     
     if [[ $? -ne 0 ]]

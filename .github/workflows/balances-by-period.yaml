@@ -39,4 +39,4 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       
       - name: Balance By Period
-        run: .github/workflows/bash-scripts/balances-by-period.sh
+        run: .github/workflows/bash-scripts/balancesbyperiod.sh

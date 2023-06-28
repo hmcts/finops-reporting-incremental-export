@@ -1,22 +1,61 @@
 #!/bin/bash
 
+# script specific variables
 working_dir=$(mktemp -d)
-billing_account="59232335"
-start_date="2022-10-01"
-end_date="2022-10-31"
-subscription_name="DTS-SHAREDSERVICES-SBOX"
-subscription_id="a8140a9e-f1b0-481f-a4de-09e2ee23f7ab"  
-filter=("Single" "Shared")
 IFS="|"
+data_source="reservationchanges"
+
+# source file specific vars
+source_dir="${working_dir}"
+source_file_name="${data_source}-$(date +%y%m%d-%H%M%S).json"
+# source_full_path="${source_dir}/${source_file_name}" # This is populated in the while loop for this script 
+
+# destination speciifc vars
+destination_path="$data_source/$(date +%y/%m/%d)" # This creates a /YY/MM/DD  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
+destination_filename="${source_file_name}"
+# destination_full_path="/${destination_path}/${destination_filename}" #in this script this is populated in the while loop 
+
+# API specific vars
+filter=("Single" "Shared") #array of possible api filters normally shared and single 
+# start_date="2022-10-01"
+# end_date="2022-10-31"
+look_back_period="Last1Days" #time to request data for 
+
 for filter in "${filter[@]}"
 do
     export_name="Reservationrecomendations_${subscription_name}_${filter}_${start_date}-${end_date}.json"
     base_url="https://management.azure.com/subscriptions/${subscription_id}/providers/Microsoft.Consumption/reservationRecommendations?\$filter=properties/scope eq '${filter}' AND properties/lookBackPeriod eq 'Last7Days'&api-version=2023-03-01"
-    base_command=$(az rest --method get --url ${base_url} > ${working_dir}/${export_name} )
-    ${base_command}
+    az rest --method get --url ${base_url} > ${working_dir}/${export_name}
+    
+    if [[ $? -ne 0 ]]
+    then
+        echo "ERROR: FAIL Exit code is:" $?
+        exit 1
+    else 
+        echo "INFO: Interogate API end"
+    fi
+
+    # now upload to storage
+
+    if [[ -f .github/workflows/bash-scripts/storage_account_upload.sh ]]
+        then
+            source .github/workflows/bash-scripts/storage_account_upload.sh
+            echo "upload to Storage Account: "${storage_account_name}" container:" ${container_name} " Path:"${destination_full_path}
+            destination_full_path="/${destination_path}/${source_filename}"
+            Upload_to_storage
+        else
+            echo "ERROR: cant find .github/workflows/bash-scripts/storage_account_upload.sh current path:"
+            pwd
+            echo "INFO: Tree out put"
+            ls -R
+            exit 1
+    fi 
+
+
+
 done
 
-# now upload to storage
+
 
 rm ${working_dir}/*
 rmdir ${working_dir} 

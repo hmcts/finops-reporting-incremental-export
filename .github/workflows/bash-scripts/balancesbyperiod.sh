@@ -20,11 +20,11 @@ filter=("Single" "Shared") #array of possible api filters normally shared and si
 billing_period=$(date +%Y%m)
 
 
-# billing_account=59232335
+billing_account2=59232335
 for filter in "${filter[@]}"
 do
     export_name="Reservationcharges_${subscription_name}_${filter}_${billing_period}.json"
-    base_url="https://management.azure.com/providers/Microsoft.Billing/billingAccounts/${billing_account}/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?&api-version=2023-03-01"
+    base_url="https://management.azure.com/providers/Microsoft.Billing/billingAccounts/${billing_account2}/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?&api-version=2023-03-01"
     # testing echos
     echo "---- INFO: The URL being used is:"
     echo $base_url

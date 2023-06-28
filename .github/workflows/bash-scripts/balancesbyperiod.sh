@@ -36,6 +36,7 @@ do
     if [[ -f .github/workflows/bash-scripts/storage_account_upload.sh ]]
         then
             source .github/workflows/bash-scripts/storage_account_upload.sh
+            destination_full_path="/${destination_path}/${source_filename}"
             echo "upload to Storage Account: "${storage_account_name}" container:" ${container_name} " Path:"${destination_full_path}
             destination_full_path="/${destination_path}/${source_filename}"
             Upload_to_storage

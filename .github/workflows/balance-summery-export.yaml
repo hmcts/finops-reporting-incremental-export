@@ -7,16 +7,16 @@ permissions:
   id-token: write
 # set vars for script here 
 env: 
-  subscription_name: ${{ secrets.SUBSCRIPTION_NAME }}
-  client_id: ${{ secrets.AZURE_CLIENT_ID }}
-  subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-  tenant_id: ${{ secrets.AZURE_TENANT_ID }}
-  container_name: ${{ secrets.CONTAINER_NAME }}
-  resource_group: ${{ secrets.RESOURCE_GROUP }}
-  service_principal_app_id: ${{ secrets.SERVICE_PRINCIPAL_APP_ID }}
-  storage_account_name: ${{ secrets.STORAGE_ACCOUNT_NAME }}
-  billing_account: ${{ secrets.BILLING_ACCOUNT }}
-  # : ${{ secrets.SUBSCRIPTION_NAME }}
+  subscription_name: ${{ vars.SUBSCRIPTION_NAME }}
+  client_id: ${{ vars.AZURE_CLIENT_ID }}
+  subscription_id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+  tenant_id: ${{ vars.AZURE_TENANT_ID }}
+  container_name: ${{ vars.CONTAINER_NAME }}
+  resource_group: ${{ vars.RESOURCE_GROUP }}
+  service_principal_app_id: ${{ vars.SERVICE_PRINCIPAL_APP_ID }}
+  storage_account_name: ${{ vars.STORAGE_ACCOUNT_NAME }}
+  billing_account: ${{ vars.BILLING_ACCOUNT }}
+  # : ${{ vars.SUBSCRIPTION_NAME }}
 jobs:
   build:
     runs-on: ubuntu-latest

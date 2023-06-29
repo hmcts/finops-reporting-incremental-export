@@ -1,4 +1,4 @@
-name: Cost Management API
+name: Balances By Period Cost Management API
 on:
   workflow_dispatch:
   schedule:

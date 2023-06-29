@@ -6,11 +6,13 @@ data_source="balanceSummary"
 
 # source file specific vars
 source_dir="${working_dir}"
-source_file_name="${data_source}-$(date +%y%m%d-%H%M%S).json"
+source_file_name="${data_source}-test122.json"
+# source_file_name="${data_source}-$(date +%y%m%d-%H%M%S).json"
 source_full_path="${source_dir}/${filter}-${source_file_name}"
 
 # destination speciifc vars
-destination_path="$data_source/$(date +%y/%m/%d)" # This creates a /YY/MM/DD  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
+# destination_path="$data_source/$(date +%y/%m/%d)" # This creates a /YY/MM/DD  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
+destination_path="$data_source/test1222" # This creates a /YY/MM/DD  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
 destination_filename="${source_file_name}"
 destination_full_path="/${destination_path}/${source_file_name}"
 

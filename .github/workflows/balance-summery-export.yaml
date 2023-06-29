@@ -1,4 +1,4 @@
-name: Cost Management API
+name: Balance Summery Export Cost Management API
 on:
   workflow_dispatch:
   schedule:
@@ -15,7 +15,7 @@ env:
   resource_group: ${{ secrets.RESOURCE_GROUP }}
   service_principal_app_id: ${{ secrets.SERVICE_PRINCIPAL_APP_ID }}
   storage_account_name: ${{ secrets.STORAGE_ACCOUNT_NAME }}
-  billing_account: ${{ secrets.SUBSCRIPTION_NAME }}
+  billing_account: ${{ secrets.BILLING_ACCOUNT }}
   # : ${{ secrets.SUBSCRIPTION_NAME }}
 jobs:
   build:

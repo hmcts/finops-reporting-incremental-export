@@ -28,6 +28,7 @@ function Upload_to_storage(){
     if [[ ! -f ${source_full_path} ]]
         then
             echo "Error: source file not reachable"
+            echo "Trying to reach: " $source_full_path
             exit 1
     fi
 

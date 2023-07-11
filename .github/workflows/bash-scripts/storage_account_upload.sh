@@ -37,7 +37,7 @@ function Upload_to_storage(){
     echo "INFO: Storage Account name is:" ${storage_account_name}
     echo "INFO: Resource Group name is :" ${resource_group}
     echo "INFO: Destination path is: " ${destination_full_path}
-    az storage fs directory upload --file-system ${container_name} --account-name ${storage_account_name} --account-key $(sa_key} --destination-path ${destination_full_path} --source ${source_full_path} --recursive
+    az storage fs directory upload --file-system ${container_name} --account-name ${storage_account_name} --account-key ${sa_key} --destination-path ${destination_full_path} --source ${source_full_path} --recursive
     
     if [[ $? -ne 0 ]]
         then

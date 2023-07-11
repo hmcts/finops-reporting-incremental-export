@@ -25,6 +25,8 @@ date_range_end=$(date +%Y"-"%M"-29") # 29th is specified on purpose and the api 
 export_name="${data_source}_${subscription_name}_${filter}_${start_date}-${end_date}.json"
 # base_url="https://management.azure.com/subscriptions/${subscription_id}/providers/Microsoft.Consumption/${data_source}?\$filter=properties/scope eq '${filter}' AND properties/lookBackPeriod eq 'Last7Days'&api-version=2023-03-01"
 base_url="https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/providers/Microsoft.Consumption/reservationTransactions?$filter=properties/eventDate+ge+${date_range_start}+AND+properties/eventDate+le+${date_range_end}&api-version=2023-03-01"
+echo "interogating this url:"
+echo ${base_url}
 az rest --method get --url ${base_url} > ${working_dir}/${export_name}
 
 if [[ $? -ne 0 ]]

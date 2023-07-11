@@ -17,21 +17,12 @@ env:
   service_principal_app_id: ${{ vars.SERVICE_PRINCIPAL_APP_ID }}
   storage_account_name: ${{ vars.STORAGE_ACCOUNT_NAME }}
   billing_account: ${{ vars.BILLING_ACCOUNT }}
-  # : ${{ vars.SUBSCRIPTION_NAME }}
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Set the value in bash
-        run: |
-          echo "current dir:" 
-          pwd
-          echo "whats in that dir:"
-          ls -R
-   
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:

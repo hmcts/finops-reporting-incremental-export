@@ -17,8 +17,6 @@ destination_filename="${source_file_name}"
 
 # API specific vars
 filter=("Single" "Shared") #array of possible api filters normally shared and single 
-# start_date="2022-10-01"
-# end_date="2022-10-31"
 look_back_period="Last1Days" #time to request data for 
 
 # loop through the filters and interogate the api storing json locally
@@ -44,9 +42,10 @@ do
 
     if [[ -f .github/workflows/bash-scripts/storage_account_upload.sh ]]
         then
+            destination_full_path="/${destination_path}/${data_source}-$(date +%y%m%d-%H%M%S)-${filter}.json"
             source .github/workflows/bash-scripts/storage_account_upload.sh
             echo "upload to Storage Account: "${storage_account_name}" container:" ${container_name} " Path:"${destination_full_path}
-            destination_full_path="/${destination_path}/${source_filename}"
+            
             Upload_to_storage
         else
             echo "ERROR: cant find .github/workflows/bash-scripts/storage_account_upload.sh current path:"

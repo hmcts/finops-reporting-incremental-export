@@ -20,8 +20,8 @@ filter=("Single" "Shared") #array of possible api filters normally shared and si
 # start_date="2022-10-01"
 # end_date="2022-10-31"
 # look_back_period="Last1Days" #time to request data for 
-date_range_start=$(date +%Y"-"%M"-01")
-date_range_end=$(date +%Y"-"%M"-29") # 29th is specified on purpose and the api should return the whole month if dates after 
+date_range_start=$(date +%Y"-"%m"-01")
+date_range_end=$(date +%Y"-"%m"-29") # 29th is specified on purpose and the api should return the whole month if dates after 
 export_name="${data_source}_${subscription_name}_${filter}_${start_date}-${end_date}.json"
 # base_url="https://management.azure.com/subscriptions/${subscription_id}/providers/Microsoft.Consumption/${data_source}?\$filter=properties/scope eq '${filter}' AND properties/lookBackPeriod eq 'Last7Days'&api-version=2023-03-01"
 base_url="https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/providers/Microsoft.Consumption/reservationTransactions?$filter=properties/eventDate+ge+${date_range_start}+AND+properties/eventDate+le+${date_range_end}&api-version=2023-03-01"

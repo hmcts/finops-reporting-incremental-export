@@ -7,6 +7,7 @@ permissions:
   id-token: write
 # set vars for script here 
 env: 
+  sa_key: ${{ secrets.SA_KEY }}
   subscription_name: ${{ vars.SUBSCRIPTION_NAME }}
   client_id: ${{ vars.AZURE_CLIENT_ID }}
   subscription_id: ${{ vars.AZURE_SUBSCRIPTION_ID }}

@@ -3,7 +3,7 @@
 # script specific variables
 working_dir=$(mktemp -d)
 IFS="|"
-data_source="reservationRecommendations"
+data_source="reservation_recommendations"
 
 # source file specific vars
 source_dir="${working_dir}"
@@ -27,8 +27,6 @@ for filter in "${filter[@]}"
 do
     
     source_full_path="${source_dir}/${filter}-${source_file_name}"
-   
-    # base_url="https://management.azure.com/subscriptions/${subscription_id}/providers/Microsoft.Consumption/${data_source}?\$filter=properties/scope eq '${filter}' AND properties/lookBackPeriod eq '${look_back_period}'&api-version=2023-03-01"
     base_url="https://management.azure.com/subscriptions/${subscription_id}/providers/Microsoft.Consumption/reservationRecommendations?\$filter=properties/scope eq '${filter}' AND properties/lookBackPeriod eq 'Last7Days'&api-version=2023-03-01"
     
     echo "INFO: Interogate API start"

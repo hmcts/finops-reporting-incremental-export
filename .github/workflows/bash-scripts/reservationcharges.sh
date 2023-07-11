@@ -3,7 +3,7 @@
 # script specific variables
 working_dir=$(mktemp -d)
 IFS="|"
-data_source="reservationcharges"
+data_source="reservation_charges"
 
 # source file specific vars
 source_dir="${working_dir}"
@@ -23,9 +23,10 @@ filter=("Single" "Shared") #array of possible api filters normally shared and si
 date_range_start=$(date +%Y"-"%m"-01")
 date_range_end=$(date +%Y"-"%m"-29") # 29th is specified on purpose and the api should return the whole month if dates after 
 export_name="${data_source}_${subscription_name}_${filter}_${start_date}-${end_date}.json"
-# base_url="https://management.azure.com/subscriptions/${subscription_id}/providers/Microsoft.Consumption/${data_source}?\$filter=properties/scope eq '${filter}' AND properties/lookBackPeriod eq 'Last7Days'&api-version=2023-03-01"
 base_url="https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/providers/Microsoft.Consumption/reservationTransactions?$filter=properties/eventDate+ge+${date_range_start}+AND+properties/eventDate+le+${date_range_end}&api-version=2023-03-01"
 echo "interogating this url:"
+# https://management.azure.com/providers/Microsoft.Billing/billingAccounts/${billing_account}/providers/Microsoft.Consumption/reservationTransactions?&api-version=2023-05-01
+
 echo ${base_url}
 az rest --method get --url ${base_url} > ${working_dir}/${export_name}
 

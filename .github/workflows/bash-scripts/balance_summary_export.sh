@@ -2,7 +2,7 @@
 # script specific variables
 working_dir=$(mktemp -d)
 # IFS="|"
-data_source="balanceSummary"
+data_source="balance_summary"
 
 # source file specific vars
 source_dir="${working_dir}"

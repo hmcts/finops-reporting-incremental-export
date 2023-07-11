@@ -3,7 +3,7 @@
 # script specific variables
 working_dir=$(mktemp -d)
 IFS="|"
-data_source="reservationchanges"
+data_source="reservationcharges"
 
 # source file specific vars
 source_dir="${working_dir}"

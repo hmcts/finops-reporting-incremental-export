@@ -6,18 +6,17 @@ data_source="balance_summary"
 
 # source file specific vars
 source_dir="${working_dir}"
-# source_file_name="${data_source}-test122.json"
-source_file_name="${data_source}-$(date -v-1m +"%y%m%d-%H%M%S").json"
+source_file_name="${data_source}-$(date -d-1m +"%y%m%d-%H%M%S").json"
 source_full_path="${source_dir}/${filter}-${source_file_name}"
 
 # destination speciifc vars
-destination_path="$data_source/$(date  -v-1m +"%Y-%m")" # This creates a /YY/MM folder structure for the previous month to where the file will be uploaded eg: /23/06/[uploaded_file]
+destination_path="$data_source/$(date -d-1m +"%Y-%m")" # This creates a /YY/MM folder structure for the previous month to where the file will be uploaded eg: /23/06/[uploaded_file]
 destination_filename="${source_file_name}"
 destination_full_path="/${destination_path}/${source_file_name}"
 # destination_full_path="${source_file_name}"
 
 # API specific vars
-billing_period=$(date -v-1m +"%Y-%m") #We need last month 
+billing_period=$(date -d-1m +"%Y-%m") #We need last month 
 
 # Log into Azure
 # echo "INFO: Setting extentions to install without prompt" # This was required in testing to ensure all needed az commands were installed if this isnt present the script waits for user input

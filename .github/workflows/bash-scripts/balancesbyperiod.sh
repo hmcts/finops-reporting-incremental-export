@@ -20,12 +20,11 @@ do
     
     source_file_name="${data_source}_${subscription_name}_${filter}_${billing_period}.json"
       
-    base_url="https://management.azure.com/providers/Microsoft.Billing/billingAccounts/${billing_account}/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?&api-version=2023-03-01"
+    base_url='https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?&api-version=2023-03-01'
     # testing echos
     echo "---- INFO: The URL being used is:"
     echo $base_url
     echo "----"
-    # base_url="https://management.azure.com/providers/Microsoft.Billing/billingAccounts/${billing_account}/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?&api-version=2023-03-01"
     source_full_path="${source_dir}/${source_file_name}"
     az rest --method get --url ${base_url} > ${source_full_path}
     # now upload to storage

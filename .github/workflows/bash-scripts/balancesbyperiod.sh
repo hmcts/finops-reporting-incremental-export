@@ -11,7 +11,7 @@ source_dir="${working_dir}"
 # source_full_path="${source_dir}/${source_file_name}" # This is populated in the while loop for this script 
 
 # destination speciifc vars
-destination_path="$data_source/$(date +%y/%m/%d)" # This creates a /YY/MM/DD  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
+destination_path="$data_source/$(date +%y/%m)" # This creates a /YY/MM  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
 destination_filename="${source_file_name}"
 # destination_full_path="/${destination_path}/${destination_filename}" #in this script this is populated in the while loop 
 

@@ -2,7 +2,7 @@ name: Balances By Period Cost Management API
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 13 * *' # First of every month at 00:00
+    - cron: '0 0 1 * *' # First of every month at 00:00
 permissions:
   id-token: write
 # set vars for script here 

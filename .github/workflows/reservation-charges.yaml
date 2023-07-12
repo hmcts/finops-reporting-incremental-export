@@ -2,7 +2,7 @@ name: Reservation Charges Cost Management API
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 20 * * 1-5' # Every weekday at 8pm UTC
+    - cron: '10 0 * * *' # Every day at 00:10
 permissions:
   id-token: write
 # set vars for script here 

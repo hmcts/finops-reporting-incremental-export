@@ -3,6 +3,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 20 * * 1-5' # Every weekday at 8pm UTC
+  push:
+    branches:
+      - "t1"
 permissions:
   id-token: write
 # set vars for script here 
@@ -25,10 +28,6 @@ jobs:
         uses: actions/checkout@v3
       - name: 'Az CLI login'
         uses: azure/login@v1
-        with:
-          client-id: ${{ vars.AZURE_CLIENT_ID }}
-          tenant-id: ${{ vars.AZURE_TENANT_ID }}
-          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
-
+        
       - name: Balance Summary Export
         run: .github/workflows/bash-scripts/balance_summary_export.sh

@@ -42,7 +42,7 @@ do
 
     if [[ -f .github/workflows/bash-scripts/storage_account_upload.sh ]]
         then
-            destination_full_path="/${destination_path}/${data_source}-$(date +%y%m%d-%H%M%S)-${filter}.json"
+            destination_full_path="/${destination_path}/${data_source}_${subscription_name}_$(date -d '1 day ago' +%y%m%d-%H%M%S)_${filter}.json"
             source .github/workflows/bash-scripts/storage_account_upload.sh
             echo "upload to Storage Account: "${storage_account_name}" container:" ${container_name} " Path:"${destination_full_path}
             

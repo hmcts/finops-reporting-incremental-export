@@ -5,7 +5,7 @@ working_dir=$(mktemp -d)
 data_source="balance_summary"
 
 # API specific vars
-billing_period=$(date -d '1 month ago' +"%Y-%m") #We need last month 
+billing_period=$(date -d '1 month ago' +"%Y%m") #We need last month 
 
 # source file specific vars
 source_dir="${working_dir}"

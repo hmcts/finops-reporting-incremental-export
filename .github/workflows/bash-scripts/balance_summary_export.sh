@@ -12,7 +12,6 @@ source_full_path="${source_dir}/${filter}-${source_file_name}"
 
 # destination speciifc vars
 destination_path="$data_source/$(date +%y/%m/%d)" # This creates a /YY/MM/DD  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
-# destination_path="$data_source/test1222" # This creates a /YY/MM/DD  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
 destination_filename="${source_file_name}"
 destination_full_path="/${destination_path}/${source_file_name}"
 # destination_full_path="${source_file_name}"

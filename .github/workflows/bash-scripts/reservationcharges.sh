@@ -3,7 +3,7 @@
 # script specific variables
 working_dir=$(mktemp -d)
 IFS="|"
-data_source="reservationchanges"
+data_source="reservation_charges"
 
 # source file specific vars
 source_dir="${working_dir}"
@@ -19,41 +19,40 @@ destination_filename="${source_file_name}"
 filter=("Single" "Shared") #array of possible api filters normally shared and single 
 # start_date="2022-10-01"
 # end_date="2022-10-31"
-look_back_period="Last1Days" #time to request data for 
+# look_back_period="Last1Days" #time to request data for 
+date_range_start=$(date +%Y"-"%m"-01")
+date_range_end=$(date +%Y"-"%m"-29") # 29th is specified on purpose and the api should return the whole month if dates after 
+export_name="${data_source}_${subscription_name}_${filter}_${start_date}-${end_date}.json"
+base_url="https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/providers/Microsoft.Consumption/reservationTransactions?$filter=properties/eventDate+ge+${date_range_start}+AND+properties/eventDate+le+${date_range_end}&api-version=2023-03-01"
+echo "interogating this url:"
+# https://management.azure.com/providers/Microsoft.Billing/billingAccounts/${billing_account}/providers/Microsoft.Consumption/reservationTransactions?&api-version=2023-05-01
 
-for filter in "${filter[@]}"
-do
-    export_name="Reservationrecomendations_${subscription_name}_${filter}_${start_date}-${end_date}.json"
-    base_url="https://management.azure.com/subscriptions/${subscription_id}/providers/Microsoft.Consumption/${data_source}?\$filter=properties/scope eq '${filter}' AND properties/lookBackPeriod eq 'Last7Days'&api-version=2023-03-01"
-    az rest --method get --url ${base_url} > ${working_dir}/${export_name}
-    
-    if [[ $? -ne 0 ]]
+echo ${base_url}
+az rest --method get --url ${base_url} > ${working_dir}/${export_name}
+
+if [[ $? -ne 0 ]]
+then
+    echo "ERROR: FAIL Exit code is:" $?
+    exit 1
+else 
+    echo "INFO: Interogate API end"
+fi
+
+# now upload to storage
+
+if [[ -f .github/workflows/bash-scripts/storage_account_upload.sh ]]
     then
-        echo "ERROR: FAIL Exit code is:" $?
+        source .github/workflows/bash-scripts/storage_account_upload.sh
+        echo "upload to Storage Account: "${storage_account_name}" container:" ${container_name} " Path:"${destination_full_path}
+        destination_full_path="/${destination_path}/${source_filename}"
+        Upload_to_storage
+    else
+        echo "ERROR: cant find .github/workflows/bash-scripts/storage_account_upload.sh current path:"
+        pwd
+        echo "INFO: Tree out put"
+        ls -R
         exit 1
-    else 
-        echo "INFO: Interogate API end"
-    fi
-
-    # now upload to storage
-
-    if [[ -f .github/workflows/bash-scripts/storage_account_upload.sh ]]
-        then
-            source .github/workflows/bash-scripts/storage_account_upload.sh
-            echo "upload to Storage Account: "${storage_account_name}" container:" ${container_name} " Path:"${destination_full_path}
-            destination_full_path="/${destination_path}/${source_filename}"
-            Upload_to_storage
-        else
-            echo "ERROR: cant find .github/workflows/bash-scripts/storage_account_upload.sh current path:"
-            pwd
-            echo "INFO: Tree out put"
-            ls -R
-            exit 1
-    fi 
-
-
-
-done
+fi
 
 
 

@@ -7,36 +7,28 @@ permissions:
   id-token: write
 # set vars for script here 
 env: 
-  subscription_name: ${{ secrets.SUBSCRIPTION_NAME }}
-  client_id: ${{ secrets.AZURE_CLIENT_ID }}
-  subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-  tenant_id: ${{ secrets.AZURE_TENANT_ID }}
-  container_name: ${{ secrets.CONTAINER_NAME }}
-  resource_group: ${{ secrets.RESOURCE_GROUP }}
-  service_principal_app_id: ${{ secrets.SERVICE_PRINCIPAL_APP_ID }}
-  storage_account_name: ${{ secrets.STORAGE_ACCOUNT_NAME }}
-  billing_account: ${{ secrets.BILLING_ACCOUNT }}
-  # : ${{ secrets.SUBSCRIPTION_NAME }}
+  sa_key: ${{ secrets.SA_KEY }}
+  subscription_name: ${{ vars.SUBSCRIPTION_NAME }}
+  client_id: ${{ vars.AZURE_CLIENT_ID }}
+  subscription_id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+  tenant_id: ${{ vars.AZURE_TENANT_ID }}
+  container_name: ${{ vars.CONTAINER_NAME }}
+  resource_group: ${{ vars.RESOURCE_GROUP }}
+  service_principal_app_id: ${{ vars.SERVICE_PRINCIPAL_APP_ID }}
+  storage_account_name: ${{ vars.STORAGE_ACCOUNT_NAME }}
+  billing_account: ${{ vars.BILLING_ACCOUNT }}
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Set the value in bash
-        run: |
-          echo "current dir:" 
-          pwd
-          echo "whats in that dir:"
-          ls -R
-   
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       
       - name: Balance By Period
         run: .github/workflows/bash-scripts/balancesbyperiod.sh

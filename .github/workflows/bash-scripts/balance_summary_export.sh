@@ -20,11 +20,14 @@ destination_full_path="/${destination_path}/${source_file_name}"
 # Log into Azure
 
 echo "INFO: Interogate API start"
-echo "Billing period: ${billing_period}"
-echo "URL:"
-echo 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?api-version=2023-03-01'
 
-az rest --method get --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?api-version=2023-03-01'  > ${source_full_path}
+base_url='https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?api-version=2023-03-01'
+ # testing echos
+echo "---- INFO: The URL being used is:"
+echo $base_url
+echo "----"
+echo "Billing period: ${billing_period}"    
+az rest --method get --url ${base_url}  > ${source_full_path}
 if [[ $? -ne 0 ]]
     then
         echo "ERROR: FAIL Exit code is:" $?

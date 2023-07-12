@@ -2,7 +2,7 @@ name: Balance Summery Export Cost Management API
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 20 * * 1-5' # Every weekday at 8pm UTC
+    - cron: 0 0 1 * *' # First of every month at 00:00
 permissions:
   id-token: write
 # set vars for script here 

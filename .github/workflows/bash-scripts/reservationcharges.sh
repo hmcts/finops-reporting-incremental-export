@@ -7,6 +7,7 @@ data_source="reservation_charges"
 
 # source file specific vars
 date_range_start=$(date -d '1 day ago' +"%Y-%m-%d")
+date_range_end=$(date +"%Y-%m-%d")
 source_dir="${working_dir}"
 source_file_name="${data_source}_${subscription_name}_${date_range_start}.json"
 source_full_path="${source_dir}/${source_file_name}" 
@@ -22,7 +23,7 @@ filter=("Single" "Shared") #array of possible api filters normally shared and si
 # date_range_end=$(date +%Y"-"%m"-29") # 29th is specified on purpose and the api should return the whole month if dates after 
 
 
-az rest --method get --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/providers/Microsoft.Consumption/reservationTransactions?$filter=properties/eventDate+ge+'${date_range_start}'&api-version=2023-03-01' > $source_full_path
+az rest --method get --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/providers/Microsoft.Consumption/reservationTransactions?$filter=properties/eventDate+ge+'${date_range_start}'+AND+properties/eventDate+le+'${date_range_end}'&api-version=2023-03-01' > $source_full_path
 
 if [[ $? -ne 0 ]]
 then

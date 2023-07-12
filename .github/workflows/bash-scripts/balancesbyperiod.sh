@@ -7,24 +7,20 @@ data_source="balance_by_period"
 
 # source file specific vars
 source_dir="${working_dir}"
-# source_file_name="${data_source}-$(date +%y%m%d-%H%M%S).json"
-# source_full_path="${source_dir}/${source_file_name}" # This is populated in the while loop for this script 
 
-# destination speciifc vars
-destination_path="$data_source/$(date +%y/%m)" # This creates a /YY/MM  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
-destination_filename="${source_file_name}"
-# destination_full_path="/${destination_path}/${destination_filename}" #in this script this is populated in the while loop 
+destination_path="$data_source/$(date -v-1m +"%Y-%m")" # This creates a /YY/MM folder structure for the previous month to where the file will be uploaded eg: /23/06/[uploaded_file]
 
 # API specific vars
 filter=("Single" "Shared") #array of possible api filters normally shared and single 
-billing_period=$(date +%Y%m)
+billing_period=$(date -v-1m +"%Y-%m") #We need last month 
 
 
 
 for filter in "${filter[@]}"
 do
-
+    
     source_file_name="${data_source}_${subscription_name}_${filter}_${billing_period}.json"
+      
     base_url="https://management.azure.com/providers/Microsoft.Billing/billingAccounts/${billing_account}/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?&api-version=2023-03-01"
     # testing echos
     echo "---- INFO: The URL being used is:"

@@ -1,4 +1,4 @@
-name: Reservation Charges Cost MAnagement API
+name: Reservation Charges Cost Management API
 on:
   workflow_dispatch:
   schedule:

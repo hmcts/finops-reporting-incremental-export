@@ -8,7 +8,7 @@ data_source="reservation_charges"
 # source file specific vars
 source_dir="${working_dir}"
 source_file_name="${data_source}-$(date +%y%m%d-%H%M%S).json"
-# source_full_path="${source_dir}/${source_file_name}" # This is populated in the while loop for this script 
+source_full_path="${source_dir}/${source_file_name}" 
 
 # destination speciifc vars
 destination_path="$data_source/$(date +%y/%m/%d)" # This creates a /YY/MM/DD  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
@@ -26,7 +26,7 @@ export_name="${data_source}_${subscription_name}_${filter}_${start_date}-${end_d
 # 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/providers/Microsoft.Consumption/reservationTransactions?$filter=properties/eventDate+ge+'${date_range_start}'+AND+properties/eventDate+le+'${date_range_end}'&api-version=2023-03-01'
 
 
-az rest --method get --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/providers/Microsoft.Consumption/reservationTransactions?$filter=properties/eventDate+ge+'${date_range_start}'+AND+properties/eventDate+le+'${date_range_end}'&api-version=2023-03-01' > ${working_dir}/${export_name}
+az rest --method get --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/providers/Microsoft.Consumption/reservationTransactions?$filter=properties/eventDate+ge+'${date_range_start}'+AND+properties/eventDate+le+'${date_range_end}'&api-version=2023-03-01' > $source_full_path
 
 if [[ $? -ne 0 ]]
 then

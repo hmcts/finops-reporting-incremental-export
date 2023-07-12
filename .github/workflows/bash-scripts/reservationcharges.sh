@@ -6,14 +6,14 @@ IFS="|"
 data_source="reservation_charges"
 
 # source file specific vars
-date_range_start=$(date -d '1 day ago' +"%Y-%m-%d")
-date_range_end=$(date +"%Y-%m-%d")
+date_range_start=$(date -d '1 month ago' +"%Y-%m-01")
+date_range_end=$(date -d '1 month ago' +"%Y-%m-29")
 source_dir="${working_dir}"
-source_file_name="${data_source}_${subscription_name}_${date_range_start}.json"
+source_file_name="${data_source}_${subscription_name}_${date -d '1 month ago' +"+Y-m"}.json"
 source_full_path="${source_dir}/${source_file_name}" 
 
 # destination speciifc vars
-destination_path="$data_source/$(date +%y/%m/%d)" # This creates a /YY/MM/DD  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
+destination_path="$data_source/$(date +%y/%m)" # This creates a /YY/MM  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
 destination_filename="${source_file_name}"
 
 # API specific vars

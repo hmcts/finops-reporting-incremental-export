@@ -23,7 +23,7 @@ filter=("Single" "Shared") #array of possible api filters normally shared and si
 date_range_start=$(date +%Y"-"%m"-01")
 date_range_end=$(date +%Y"-"%m"-29") # 29th is specified on purpose and the api should return the whole month if dates after 
 export_name="${data_source}_${subscription_name}_${filter}_${start_date}-${end_date}.json"
-'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/providers/Microsoft.Consumption/reservationTransactions?$filter=properties/eventDate+ge+'${date_range_start}'+AND+properties/eventDate+le+'${date_range_end}'&api-version=2023-03-01'
+# 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/providers/Microsoft.Consumption/reservationTransactions?$filter=properties/eventDate+ge+'${date_range_start}'+AND+properties/eventDate+le+'${date_range_end}'&api-version=2023-03-01'
 
 
 az rest --method get --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/providers/Microsoft.Consumption/reservationTransactions?$filter=properties/eventDate+ge+'${date_range_start}'+AND+properties/eventDate+le+'${date_range_end}'&api-version=2023-03-01' > ${working_dir}/${export_name}
@@ -40,9 +40,9 @@ fi
 
 if [[ -f .github/workflows/bash-scripts/storage_account_upload.sh ]]
     then
-        source .github/workflows/bash-scripts/storage_account_upload.sh
         echo "upload to Storage Account: "${storage_account_name}" container:" ${container_name} " Path:"${destination_full_path}
         destination_full_path="/${destination_path}/${source_filename}"
+        source .github/workflows/bash-scripts/storage_account_upload.sh
         Upload_to_storage
     else
         echo "ERROR: cant find .github/workflows/bash-scripts/storage_account_upload.sh current path:"

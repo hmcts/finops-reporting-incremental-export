@@ -9,7 +9,7 @@ data_source="reservation_charges"
 date_range_start=$(date -d '1 month ago' +"%Y-%m-01")
 date_range_end=$(date -d '1 month ago' +"%Y-%m-29")
 source_dir="${working_dir}"
-source_file_name="${data_source}_${subscription_name}_${date -d '1 month ago' +"Y-m"}.json"
+source_file_name="${data_source}_${subscription_name}_$(date -d '1 month ago' +"Y-m").json"
 source_full_path="${source_dir}/${source_file_name}" 
 
 # destination speciifc vars

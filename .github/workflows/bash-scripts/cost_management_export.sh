@@ -17,7 +17,9 @@ end_period=$(date  -d '1 day ago' +"%Y-%m-%d"T23:59:59+00:00Z)
 post_file_name="post-${export_name}.json"
 source_file_name="${export_name}.json"
 source_full_path=./${source_file_name}
-
+ pwd 
+ ls
+ exit
 # Build json file
 jq \
   --arg r ${resource_id} \

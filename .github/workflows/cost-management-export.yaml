@@ -1,8 +1,7 @@
 name: Cost Management Export API
-# on:
-#   workflow_dispatch:
-#   schedule:
-#     - cron: '10 0 * * *' # Every day at 00:10
+on:
+  workflow_dispatch:
+  
 permissions:
   id-token: write
 # set vars for script here 

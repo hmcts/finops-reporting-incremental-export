@@ -17,9 +17,7 @@ end_period=$(date  -d '1 day ago' +"%Y-%m-%d"T23:59:59+00:00Z)
 post_file_name="post-${export_name}.json"
 source_file_name="${export_name}.json"
 source_full_path=./${source_file_name}
- pwd 
- ls
- exit
+
 # Build json file
 jq \
   --arg r ${resource_id} \
@@ -27,7 +25,7 @@ jq \
   --arg f ${start_period} \
   --arg e ${end_period} \
   --arg p ${exports_path}\
-  '.properties.deliveryInfo.destination.resourceId = $r | .properties.deliveryInfo.destination.container = $c | .properties.deliveryInfo.destination.rootFolderPath = $p | .properties.definition.timePeriod.from = $f | .properties.definition.timePeriod.to = $e' ./cost_management_export.json > ./${post_file_name}
+  '.properties.deliveryInfo.destination.resourceId = $r | .properties.deliveryInfo.destination.container = $c | .properties.deliveryInfo.destination.rootFolderPath = $p | .properties.definition.timePeriod.from = $f | .properties.definition.timePeriod.to = $e' .github/workflows/bash-scripts/cost_management_export.json > ./${post_file_name}
 
 
 # put the new export

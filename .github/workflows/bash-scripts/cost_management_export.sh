@@ -32,17 +32,10 @@ jq \
 az rest --method put --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/59232335/providers/Microsoft.CostManagement/exports/'${export_name}'?api-version=2022-10-01' --body @./${post_file_name}
 
 
+# Currently the following does not work due to needing administrator role accross the tennent, therefore this part is actioned in the portal > cost management.
+
 # post new export
-az rest --method post --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/59232335/providers/Microsoft.CostManagement/exports/'${export_name}'?api-version=2022-10-01' > ${source_full_path}
+# az rest --method post --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/59232335/providers/Microsoft.CostManagement/exports/'${export_name}'?api-version=2022-10-01' > ${source_full_path}
 
-# do upload to SA here
-# destination speciifc vars
-destination_path="$data_source/$(date +%y/%m/%d)" # This creates a /YY/MM/DD  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
-destination_filename="${source_file_name}"
-destination_full_path="/${destination_path}/${source_file_name}"
-echo "upload to Storage Account: "${storage_account_name}" container:" ${container_name} " Path:"${destination_full_path}
-source .github/workflows/bash-scripts/storage_account_upload.sh
-Upload_to_storage
-
-# need to add a cleanup once gone
-az rest --method delete --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/59232335/providers/Microsoft.CostManagement/exports/'${export_name}'?api-version=2022-10-01'
+# # need to add a cleanup once gone
+# az rest --method delete --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/59232335/providers/Microsoft.CostManagement/exports/'${export_name}'?api-version=2022-10-01'

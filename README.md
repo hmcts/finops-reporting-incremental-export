@@ -4,7 +4,7 @@ Github actions run on a cron schedule to run scripts that interogate Cost Manage
 
 - Balance by period runs on the 1st of every month for the previous months data
 - Balance Summary export runs on the 1st of every month for the previous months data
-- Cost management export currently does not run due to permisions at the api access level
+- Cost management export currently only uploads the relevant export to the portal and then it needs to be started manually in the portal in cost management. This is due to needing admin rights to run the post section of the process.
 - Reservation charges (reservation transactions API) runs on the 1st of every month for the previous months data
 - Reservation recommendations runs daily at 00:10 to get the previous days data
 

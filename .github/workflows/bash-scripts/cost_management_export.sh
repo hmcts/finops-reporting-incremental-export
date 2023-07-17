@@ -11,8 +11,11 @@ data_source=cost_management_export
 resource_id="/subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.Storage/storageAccounts/${storage_account_name}"
 export_name="${data_source}-$(date +%Y-%m-%d-%H%M)"
 # we need yesterdays date 
-start_period="2023-07-01T00:00:00Z"
-end_period="3000-01-01T00:00:00Z"
+# start_period="2023-07-01T00:00:00Z"
+# end_period="3000-01-01T00:00:00Z"
+
+start_period=$(date  -d '1 day ago' +"%Y-%m-%d"T00:00:00+00:00Z)
+end_period=$(date  -d '1 day ago' +"%Y-%m-%d"T23:59:59+00:00Z)
 
 post_file_name="post-${export_name}.json"
 source_file_name="${export_name}.json"

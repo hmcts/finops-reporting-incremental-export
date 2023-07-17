@@ -24,7 +24,7 @@ jq \
   --arg f ${start_period} \
   --arg e ${end_period} \
   --arg p ${exports_path}\
-  '.properties.deliveryInfo.destination.resourceId = $r | .properties.deliveryInfo.destination.container = $c | .properties.deliveryInfo.destination.rootFolderPath = $p .github/workflows/bash-scripts/cost_management_export.json > ./${post_file_name}
+  '.properties.deliveryInfo.destination.resourceId = $r | .properties.deliveryInfo.destination.container = $c | .properties.deliveryInfo.destination.rootFolderPath = $p ' .github/workflows/bash-scripts/cost_management_export.json > ./${post_file_name}
 
 cat ./${post_file_name}
 

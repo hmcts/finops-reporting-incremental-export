@@ -12,7 +12,7 @@ resource_id="/subscriptions/${subscription_id}/resourceGroups/${resource_group}/
 export_name="${data_source}-$(date +%Y-%m-%d-%H%M)"
 # we need yesterdays date 
 start_period=$(date +"%Y-%m-%d"T00:00:00+00:00Z)
-end_period="2035-07-01T23:59:59+00:00Z)"
+end_period="2035-07-01T23:59:59+00:00Z"
 
 post_file_name="post-${export_name}.json"
 source_file_name="${export_name}.json"

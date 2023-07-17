@@ -27,6 +27,7 @@ jq \
   --arg p ${exports_path}\
   '.properties.deliveryInfo.destination.resourceId = $r | .properties.deliveryInfo.destination.container = $c | .properties.deliveryInfo.destination.rootFolderPath = $p | .properties.definition.timePeriod.from = $f | .properties.definition.timePeriod.to = $e' .github/workflows/bash-scripts/cost_management_export.json > ./${post_file_name}
 
+cat ./${post_file_name}
 
 # put the new export
 az rest --method put --url 'https://management.azure.com/providers/Microsoft.Billing/billingAccounts/59232335/providers/Microsoft.CostManagement/exports/'${export_name}'?api-version=2022-10-01' --body @./${post_file_name}

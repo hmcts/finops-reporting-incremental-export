@@ -1,31 +1,31 @@
 {
-  "properties": {
-    "schedule": {
-      "status": "Active"
-      "recurrence": "Daily",
-      "recurrencePeriod": {
-        "from": "2023-07-01T00:00:00Z",
-        "to": "3000-01-01T00:00:00Z"
-      },
-    },
-    "format": "Csv",
-    "deliveryInfo": {
-      "destination": {
-        "resourceId": "RESOURCE_ID",
-        "container": "CONTAINER",
-        "rootFolderPath": "FOLDER"
-      }
-    },
-    "definition": {
-      "type": "Usage",
-      "timeframe": "Custom",
-      "dataSet": {
-        "granularity": "Daily"
-      },
-      "timePeriod": {
-          "from": "YYYY-MM-DDT00:00:00+00:00Z",
-          "to": "YYYY-MM-DDT00:00:00+00:00Z"
-      }
-    }
-  }
+	"properties": {
+		"schedule": {
+			"status": "Active",
+			"recurrence": "Daily",
+			"recurrencePeriod": {
+				"from": "2023-07-01T00:00:00Z",
+				"to": "3000-01-01T00:00:00Z"
+			}
+		},
+		"format": "Csv",
+		"deliveryInfo": {
+			"destination": {
+				"resourceId": "RESOURCE_ID",
+				"container": "CONTAINER",
+				"rootFolderPath": "FOLDER"
+			}
+		},
+		"definition": {
+			"type": "Usage",
+			"timeframe": "Custom",
+			"dataSet": {
+				"granularity": "Daily"
+			},
+			"timePeriod": {
+				"from": "YYYY-MM-DDT00:00:00+00:00Z",
+				"to": "YYYY-MM-DDT00:00:00+00:00Z"
+			}
+		}
+	}
 }

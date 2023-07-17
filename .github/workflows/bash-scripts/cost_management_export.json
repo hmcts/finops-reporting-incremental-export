@@ -2,7 +2,7 @@
 	"properties": {
 		"schedule": {
 			"status": "Active",
-			"recurrence": "Daily",
+			"recurrence": "Monthly",
 			"recurrencePeriod": {
 				"from": "2023-07-01T00:00:00Z",
 				"to": "3000-01-01T00:00:00Z"
@@ -18,9 +18,9 @@
 		},
     "definition": {
       "type": "Usage",
-      "timeframe": "Custom",
+      "timeframe": "TheLastMonth",
       "dataSet": {
-        "granularity": "Daily"
+        "granularity": "Monthly"
               }
             }
 	}

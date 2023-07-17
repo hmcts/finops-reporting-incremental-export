@@ -15,17 +15,6 @@
 				"container": "CONTAINER",
 				"rootFolderPath": "FOLDER"
 			}
-		},
-		// "definition": {
-		// 	"type": "Usage",
-		// 	"timeframe": "Custom",
-		// 	"dataSet": {
-		// 		"granularity": "Daily"
-		// 	},
-		// 	"timePeriod": {
-		// 		"from": "YYYY-MM-DDT00:00:00+00:00Z",
-		// 		"to": "YYYY-MM-DDT00:00:00+00:00Z"
-		// 	}
-		// }
+		}
 	}
 }

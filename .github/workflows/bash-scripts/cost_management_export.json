@@ -20,7 +20,7 @@
       "type": "Usage",
       "timeframe": "TheLastMonth",
       "dataSet": {
-        "granularity": "Monthly"
+        "granularity": "Daily"
               }
             }
 	}

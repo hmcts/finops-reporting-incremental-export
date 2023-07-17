@@ -6,6 +6,7 @@
       "recurrencePeriod": {
         "from": "2023-07-01T00:00:00Z",
         "to": "3000-01-01T00:00:00Z"
+      },
     },
     "format": "Csv",
     "deliveryInfo": {

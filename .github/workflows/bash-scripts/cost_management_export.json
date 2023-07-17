@@ -16,10 +16,12 @@
 				"rootFolderPath": "FOLDER"
 			}
 		},
-    "type": "Usage",
-    "timeframe": "Custom",
-    "dataSet": {
-      "granularity": "Daily"
-    }
+    "definition": {
+      "type": "Usage",
+      "timeframe": "Custom",
+      "dataSet": {
+        "granularity": "Daily"
+              }
+            }
 	}
 }

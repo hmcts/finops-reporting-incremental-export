@@ -12,7 +12,7 @@ Github actions run on a cron schedule to run scripts that interogate Cost Manage
 ## Deployment 
 This repo is reliant on [finops-reporting-bulk-import](https://github.com/hmcts/finops-reporting-bulk-import) which builds the Storage account and sets the required permissions.
 
-The App Registration need special permissions given to it to access the cost management api, it also needs contributer permisions to the Storage Account it will write to, and federated perms to allow github actions to run.
+The App Registration needs the `Enterprise Reader` permission on the enrolment account for accessing the cost management api, it also needs contributor permissions to the Storage Account it will write to, and federated permissions to allow GitHub actions to run.
 
 ## Execution
 The 5 APIs interogated all triggered by Cron within GitHub Actions

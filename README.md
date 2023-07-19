@@ -10,7 +10,7 @@ Github actions run on a cron schedule to run scripts that interogate Cost Manage
 
 
 ## Deployment 
-This repo is reliant on finops-reporting-bulk-import which builds the Storage account and sets the perms
+This repo is reliant on [finops-reporting-bulk-import](https://github.com/hmcts/finops-reporting-bulk-import) which builds the Storage account and sets the required permissions.
 
 The App Registration need special permissions given to it to access the cost management api, it also needs contributer permisions to the Storage Account it will write to, and federated perms to allow github actions to run.
 

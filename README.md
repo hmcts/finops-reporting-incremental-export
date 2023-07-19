@@ -1,4 +1,4 @@
-## Function
+# finops-reporting-incremental-export
 
 Github actions run on a cron schedule to run scripts that interogate Cost Management APIs and upload to a Storage Account.
 

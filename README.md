@@ -19,6 +19,6 @@ The 5 APIs interogated all triggered by Cron within GitHub Actions
 
 Each of these actions check out the repo on an agent then run the bash script to interrogate the specific api, a storage_account_upload script is sourced to complete the upload when the API interrogation has been completed.
 
-These scripts use Github actions variables to populate the needed resource info.
+These scripts use GitHub actions variables to populate the needed resource info.
 
 

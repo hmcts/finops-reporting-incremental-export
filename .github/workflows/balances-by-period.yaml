@@ -31,4 +31,4 @@ jobs:
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       
       - name: Balance By Period
-        run: .github/workflows/bash-scripts/balancesbyperiod.sh
+        run: scripts/balancesbyperiod.sh

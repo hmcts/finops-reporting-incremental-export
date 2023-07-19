@@ -31,4 +31,4 @@ jobs:
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       
       - name: Reservation charges
-        run: .github/workflows/bash-scripts/reservationcharges.sh
+        run: scripts/reservationcharges.sh

@@ -30,4 +30,4 @@ jobs:
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       
       - name: Cost Management Export
-        run: .github/workflows/bash-scripts/cost_management_export.sh
+        run: scripts/cost_management_export.sh

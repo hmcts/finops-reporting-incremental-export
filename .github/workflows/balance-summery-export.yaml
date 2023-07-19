@@ -31,4 +31,4 @@ jobs:
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
       - name: Balance Summary Export
-        run: .github/workflows/bash-scripts/balance_summary_export.sh
+        run: scripts/balance_summary_export.sh

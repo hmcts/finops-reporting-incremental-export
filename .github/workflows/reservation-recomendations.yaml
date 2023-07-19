@@ -31,5 +31,5 @@ jobs:
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       
       - name: Reservation Recomendations
-        run: .github/workflows/bash-scripts/reservationrecommendations.sh
+        run: scripts/reservationrecommendations.sh
               

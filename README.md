@@ -1,6 +1,6 @@
 # finops-reporting-incremental-export
 
-Github actions run on a cron schedule to run scripts that interogate Cost Management APIs and upload to a Storage Account.
+Github actions run on a cron schedule to run scripts that interrogate Cost Management APIs and upload to a Storage Account.
 
 - Balance by period runs on the 1st of every month for the previous months data
 - Balance Summary export runs on the 1st of every month for the previous months data

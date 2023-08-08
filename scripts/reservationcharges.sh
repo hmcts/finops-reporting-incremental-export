@@ -4,14 +4,7 @@
 working_dir=$(mktemp -d)
 IFS="|"
 data_source="reservation_charges"
-
-# Set date command based on OS
-platform=$(uname)
-if [[ $platform == "Darwin" ]]; then
-    date_command=$(which gdate)
-elif [[ $platform == "Linux" ]]; then
-    date_command=$(which date)
-fi
+source functions.sh
 
 # source file specific vars
 date_range_start=$(${date_command} -d '1 month ago' +"%Y-%m-01")

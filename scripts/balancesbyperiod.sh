@@ -4,14 +4,15 @@
 working_dir=$(mktemp -d)
 IFS="|"
 data_source="balance_by_period"
+source functions.sh
 
 # source file specific vars
 source_dir="${working_dir}"
-destination_path="$data_source/$(date -d '1 month ago' +"%Y/%m")" # This creates a /YY/MM folder structure for the previous month to where the file will be uploaded eg: /23/06/[uploaded_file]
+destination_path="$data_source/$(date_command -d '1 month ago' +"%Y/%m")" # This creates a /YY/MM folder structure for the previous month to where the file will be uploaded eg: /23/06/[uploaded_file]
 
 # API specific vars
 filter=("Single" "Shared") #array of possible api filters normally shared and single 
-billing_period=$(date -d '1 month ago' +"%Y%m") #We need last month 
+billing_period=$(date_command -d '1 month ago' +"%Y%m") #We need last month 
 
 
 

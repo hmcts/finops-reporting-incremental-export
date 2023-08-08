@@ -3,9 +3,10 @@
 working_dir=$(mktemp -d)
 # IFS="|"
 data_source="balance_summary"
+source functions.sh
 
 # API specific vars
-billing_period=$(date -d '1 month ago' +"%Y%m") #We need last month 
+billing_period=$(date_command -d '1 month ago' +"%Y%m") #We need last month 
 
 # source file specific vars
 source_dir="${working_dir}"
@@ -13,7 +14,7 @@ source_file_name="${data_source}_${subscription_name}_${billing_period}.json"
 source_full_path="${source_dir}/${filter}-${source_file_name}"
 
 # destination speciifc vars
-destination_path="$data_source/$(date -d '1 month ago' +"%Y/%m")" # This creates a /YY/MM folder structure for the previous month to where the file will be uploaded eg: /23/06/[uploaded_file]
+destination_path="$data_source/$(date_command -d '1 month ago' +"%Y/%m")" # This creates a /YY/MM folder structure for the previous month to where the file will be uploaded eg: /23/06/[uploaded_file]
 destination_filename="${source_file_name}"
 destination_full_path="/${destination_path}/${source_file_name}"
 

@@ -3,10 +3,10 @@
 working_dir=$(mktemp -d)
 # IFS="|"
 data_source="balance_summary"
-source functions.sh
+source common.sh
 
 # API specific vars
-billing_period=$(date_command -d '1 month ago' +"%Y%m") #We need last month 
+billing_period=$($date_command -d '1 month ago' +"%Y%m") #We need last month 
 
 # source file specific vars
 source_dir="${working_dir}"
@@ -14,7 +14,7 @@ source_file_name="${data_source}_${subscription_name}_${billing_period}.json"
 source_full_path="${source_dir}/${filter}-${source_file_name}"
 
 # destination speciifc vars
-destination_path="$data_source/$(date_command -d '1 month ago' +"%Y/%m")" # This creates a /YY/MM folder structure for the previous month to where the file will be uploaded eg: /23/06/[uploaded_file]
+destination_path="$data_source/$($date_command -d '1 month ago' +"%Y/%m")" # This creates a /YY/MM folder structure for the previous month to where the file will be uploaded eg: /23/06/[uploaded_file]
 destination_filename="${source_file_name}"
 destination_full_path="/${destination_path}/${source_file_name}"
 
@@ -23,7 +23,6 @@ destination_full_path="/${destination_path}/${source_file_name}"
 echo "INFO: Interogate API start"
 
 base_url='https://management.azure.com/providers/Microsoft.Billing/billingAccounts/'${billing_account}'/billingPeriods/'${billing_period}'/providers/Microsoft.Consumption/balances?api-version=2023-03-01'
- # testing echos
 echo "---- INFO: The URL being used is:"
 echo $base_url
 echo "----"
@@ -38,7 +37,6 @@ if [[ $? -ne 0 ]]
 fi
 
 # now upload to storage
-
 if [[ -f .github/workflows/bash-scripts/storage_account_upload.sh ]]
     then
         source .github/workflows/bash-scripts/storage_account_upload.sh
@@ -51,5 +49,3 @@ if [[ -f .github/workflows/bash-scripts/storage_account_upload.sh ]]
         ls -R
         exit 1
     fi
-
-

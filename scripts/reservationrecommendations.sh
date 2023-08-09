@@ -4,17 +4,19 @@
 working_dir=$(mktemp -d)
 IFS="|"
 data_source="reservation_recommendations"
-source functions.sh
+source common.sh
 # source file specific vars
 source_dir="${working_dir}"
-source_file_name="${data_source}_${subscription_name}_$(date_command -d '1 day ago' +%y%m%d-%H%M%S).json"
+source_file_name="${data_source}_${subscription_name}_$(${date_command} -d '1 day ago' +%y%m%d-%H%M%S).json"
 # source_full_path="${source_dir}/${source_file_name}" # This is populated in the while loop for this script 
 
 # destination speciifc vars
-destination_path="$data_source/$(date_command -d '1 day ago' +%Y/%m/%d)" # This creates a /YY/MM/DD  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
+destination_path="$data_source/$(${date_command} -d '1 day ago' +%Y/%m/%d)" # This creates a /YY/MM/DD  folder structure to where the file will be uploaded eg: /23/06/14/[uploaded_file]
 destination_filename="${source_file_name}"
 # destination_full_path="/${destination_path}/${destination_filename}" #in this script this is populated in the while loop 
-
+echo $source_file_name
+echo $destination_path
+exit
 # API specific vars
 filter=("Single" "Shared") #array of possible api filters normally shared and single 
 look_back_period="Last1Days" #time to request data for 
@@ -42,7 +44,7 @@ do
 
     if [[ -f .github/workflows/bash-scripts/storage_account_upload.sh ]]
         then
-            destination_full_path="/${destination_path}/${data_source}_${subscription_name}_$(date_command -d '1 day ago' +%y%m%d-%H%M%S)_${filter}.json"
+            destination_full_path="/${destination_path}/${data_source}_${subscription_name}_$(${date_command} -d '1 day ago' +%y%m%d-%H%M%S)_${filter}.json"
             source .github/workflows/bash-scripts/storage_account_upload.sh
             echo "upload to Storage Account: "${storage_account_name}" container:" ${container_name} " Path:"${destination_full_path}
             

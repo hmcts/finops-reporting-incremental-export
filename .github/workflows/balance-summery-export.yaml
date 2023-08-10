@@ -2,7 +2,7 @@ name: Balance Summery Export Cost Management API
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 20 * * 1-5' # Every weekday at 8pm UTC
+    - cron: '10 0 1 * *' # First of every month at 00:10
 permissions:
   id-token: write
 # set vars for script here 
@@ -31,4 +31,4 @@ jobs:
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
       - name: Balance Summary Export
-        run: .github/workflows/bash-scripts/balance_summary_export.sh
+        run: scripts/balance_summary_export.sh
